@@ -1,0 +1,28 @@
+PayPal Installments changelog
+=====================
+
+v1.0.1
+------
+ * Added settings for Upstream presentments
+
+v2.0.1
+------
+
+ * Updated PayPal SDK composer requires packages
+
+    paypal/rest-api-sdk-php: 1.6.4 => v1.13.0
+
+    paypal/merchant-sdk-php: 3.8.* => v3.12.0
+
+ * Changed Required PayPal API version.
+    (custom\models\paypinstallmentsconfiguration.php)
+    $sServiceVersion: 124.0 => 204.0
+
+ * Updated response validate methods according to the new PayPal API version.
+
+ * Update the paypinstallmentsorder_shippingandpayment.tpl
+    displays the summary of the transaction.
+
+ *Fix name variable on the getShopConfVar('sShoppingCountry')
+    paypinstallmentspresentment.php: _fetchCountryCode()
+    sShopCountry => sShoppingCountry

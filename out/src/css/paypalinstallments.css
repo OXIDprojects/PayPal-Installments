@@ -1,0 +1,175 @@
+
+#pa-paypalinstallments-financingdetails > div {
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    color: #1A7990;
+    text-shadow: 0 -1px 0 #ffffff;
+    margin-bottom: 24px;
+}
+
+#pa-paypalinstallments-financingdetails .heading {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+#pa-paypalinstallments-financingdetails ul {
+    margin: 0;
+    float: right;
+    width: 75%;
+
+}
+
+
+#pa-paypalinstallments-financingdetails ul li {
+    list-style-type: none;
+
+}
+
+#pa-paypalinstallments-financingdetails li span {
+    margin-right: 5px;
+}
+
+#pa-paypalinstallments-financingdetails span.label {
+    display: inline-block;
+    width: 300px;
+    color: #333;
+    font-size: 0.9em;
+    padding-left: 0;
+    text-align: right;
+}
+
+#pa-paypalinstallments-financingdetails span.value {
+    display: inline-block;
+    float: right;
+}
+
+#pa-paypalinstallments-financingdetails hr {
+    border: none;
+    background-color: #ECEFF0;
+    height: 2px;
+    margin: 10px 0;
+}
+
+
+#pa-paypalinstallments-financingdetails #pa-paypalinstallments-term {
+    float: right;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+#pa-paypalinstallments-financingdetails #pa-paypalinstallments-total-costs {
+    font-size: larger;
+}
+
+.pa-paypal-installment-presentment-cont {
+    border: 1px solid #d1d8db;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#installmentsModal .modal-dialog {
+    width: 90%;
+    box-sizing: border-box;
+    font-size: 11px;
+}
+
+.pa-paypal-installment-presentment small {
+    font-size: x-small;
+}
+
+/** Special selector for mobile theme */
+#detailsMain div.pull-right div.pa-paypal-installment-presentment {
+    font-size: x-small;
+    height: 90px;
+}
+
+#detailsMain .pa-paypal-installment-presentment-cont {
+/*    height: 80px;*/
+}
+
+#detailsMain .pa-paypal-installment-presentment-cont a {
+    float: none;
+}
+
+#detailsMain .pa-paypal-installment-presentment-big {
+    font-size: medium;
+}
+
+#detailsMain .pa-paypal-installment-presentment-small {
+    font-size: x-small;
+}
+
+.pa-paypal-installment-line {
+    float: left;
+    width: 20em;
+}
+
+#content > div.pa-paypal-installment-presentment {
+    height: 30px;
+}
+
+.pa-paypal-installments-body {
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.pa-paypal-installments-body-intro {
+    clear: both;
+}
+
+.pa-paypal-installments-body-block {
+    text-align: center;
+    margin: 20px;
+}
+
+.pa-paypal-installments-body-block:before {
+  content: '\200B';
+/*   content: '';
+  margin-left: -0.25em; */
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.pa-paypal-installments-body-center {
+  display: inline-block;
+  vertical-align: middle;
+  swidth: 300px;
+  spadding: 10px 15px;
+}
+
+.pa-paypal-installments-body-extro {
+    clear: both;
+}
+
+#installmentsModal {
+    text-align: center;
+    display: none;
+}
+
+.pa-paypal-installments-body-plan {
+    width: 200px;
+    border: 2px solid;
+    margin: 3px;
+    padding: 2px;
+    text-align: left;
+    float: left;
+}
+
+.pa-paypal-installments-body span.percent {
+    float: right
+}
+
+.paypal-installment-loader {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: url('../img/paypinstallments-loader.gif') 50% 60% no-repeat rgb(255, 255, 255);
+}
+
+#payp-installments-presentment-advert-content {
+    float: left;
+    padding-right: 10px;
+}

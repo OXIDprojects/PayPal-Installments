@@ -1,0 +1,2 @@
+[{'PAYP_INSTALLMENTS_QUALIFIED_OPTION_MESSAGE'|oxmultilangassign:$oView->getRenderData()}]
+<div class="pa-paypal-installment-presentment-small">[{oxmultilang ident='PAYP_INSTALLMENTS_PRESENTMENT_PLAN_CREDITOR'}]: [{$oViewConf->getInstallmentsCreditor()}]</div>

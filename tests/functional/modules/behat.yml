@@ -1,0 +1,15 @@
+default:
+  suites:
+    default:
+      contexts:
+      - DefaultContext:
+          parameters:
+            environment: ee54
+            shop_base_url: http://paypal-instalments
+  extensions:
+    Behat\MinkExtension:
+      base_url:  'http://localhost/'
+      goutte: ~
+      sessions:
+        default:
+          goutte: ~
