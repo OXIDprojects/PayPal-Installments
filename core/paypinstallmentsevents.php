@@ -35,6 +35,8 @@ class paypInstallmentsEvents extends oxSuperCfg
             self::_createPaymentSpecificTables();
             self::_createCmsContent();
         }
+        self::_togglePaymentMethod(true);
+        self::_enablePaymentMethod();
         self::_clearTmp();
         self::_updateViews();
     }
@@ -48,6 +50,7 @@ class paypInstallmentsEvents extends oxSuperCfg
             self::_togglePaymentMethod(false);
         }
 
+        self::_disablePaymentMethod();
         self::_clearTmp();
         self::_updateViews();
     }
@@ -58,29 +61,30 @@ class paypInstallmentsEvents extends oxSuperCfg
     protected static function _createPaymentMethod()
     {
         $sPaymentMethodOxid = paypInstallmentsConfiguration::getPaymentId();
-        $oPayment = oxNew("oxpayment");
-        $oPayment->setId($sPaymentMethodOxid);
-        $oPayment->oxpayments__oxactive = new oxField(1);
-        $oPayment->oxpayments__oxaddsum = new oxField(0);
-        $oPayment->oxpayments__oxaddsumtype = new oxField('abs');
-        $oPayment->oxpayments__oxfromboni = new oxField(0);
-        $oPayment->oxpayments__oxfromamount = new oxField(paypInstallmentsConfiguration::getPaymentMethodMinAmount());
-        $oPayment->oxpayments__oxtoamount = new oxField(paypInstallmentsConfiguration::getPaymentMethodMaxAmount());
-        $oPayment->oxpayments__oxtspaymentid = 'PAYPAL';
-        $oPayment->oxpayments__oxsort = new oxField(-999); // Make the method topmost
+        $oPayment = oxNew('oxPayment');
+        if (!$oPayment->load($sPaymentMethodOxid)) {
+            $oPayment->setId($sPaymentMethodOxid);
+            $oPayment->oxpayments__oxactive = new oxField(1);
+            $oPayment->oxpayments__oxaddsum = new oxField(0);
+            $oPayment->oxpayments__oxaddsumtype = new oxField('abs');
+            $oPayment->oxpayments__oxfromboni = new oxField(0);
+            $oPayment->oxpayments__oxfromamount = new oxField(paypInstallmentsConfiguration::getPaymentMethodMinAmount());
+            $oPayment->oxpayments__oxtoamount = new oxField(paypInstallmentsConfiguration::getPaymentMethodMaxAmount());
+            $oPayment->oxpayments__oxsort = new oxField(-999); // Make the method topmost
 
-        /** @var oxLang $oLanguage */
-        $oLanguage = oxRegistry::getLang();
-        $aLanguages = $oLanguage->getLanguageIds();
+            /** @var oxLang $oLanguage */
+            $oLanguage = oxRegistry::getLang();
+            $aLanguages = $oLanguage->getLanguageIds();
 
-        foreach ($aLanguages as $iLanguageId => $sAbbreviation) {
-            $sDesc = $oLanguage->translateString("PAYP_INSTALLMENTS_MODULE_DESC", $iLanguageId);
-            $sLongDesc = $oLanguage->translateString("PAYP_INSTALLMENTS_MODULE_LONGDESC", $iLanguageId);
+            foreach ($aLanguages as $iLanguageId => $sAbbreviation) {
+                $sDesc = $oLanguage->translateString("PAYP_INSTALLMENTS_MODULE_DESC", $iLanguageId);
+                $sLongDesc = $oLanguage->translateString("PAYP_INSTALLMENTS_MODULE_LONGDESC", $iLanguageId);
 
-            $oPayment->setLanguage($iLanguageId);
-            $oPayment->oxpayments__oxdesc = new oxField($sDesc);
-            $oPayment->oxpayments__oxlongdesc = new oxField($sLongDesc);
-            $oPayment->save();
+                $oPayment->setLanguage($iLanguageId);
+                $oPayment->oxpayments__oxdesc = new oxField($sDesc);
+                $oPayment->oxpayments__oxlongdesc = new oxField($sLongDesc);
+                $oPayment->save();
+            }
         }
     }
 
@@ -205,6 +209,59 @@ class paypInstallmentsEvents extends oxSuperCfg
         if ($oPayment->load(paypInstallmentsConfiguration::getPaymentId())) {
             oxRegistry::getConfig()->setConfigParam('paypInstallmentsActive', (int) $blIsActive);
         }
+    }
+
+    /**
+     * Disables PayPal Installments payment method
+     */
+    public static function _disablePaymentMethod()
+    {
+        $sPaymentMethodOxid = paypInstallmentsConfiguration::getPaymentId();
+        $payment = oxNew('oxPayment');
+        $payment->load($sPaymentMethodOxid);
+        $payment->oxpayments__oxactive = new \OxidEsales\Eshop\Core\Field(0);
+        $payment->save();
+    }
+
+    /**
+     * Activates PayPal Installments payment method
+     */
+    public static function _enablePaymentMethod()
+    {
+        $sPaymentMethodOxid = paypInstallmentsConfiguration::getPaymentId();
+        $payment = oxNew();
+        $payment->load($sPaymentMethodOxid);
+        $payment->oxpayments__oxactive = new \OxidEsales\Eshop\Core\Field(1);
+        $payment->save();
+    }
+
+
+
+    /**
+     * Check if PayPal is used for sub-shops.
+     *
+     * @return bool
+     */
+    public static function isPayPalActiveOnSubShops()
+    {
+        $active = false;
+        $config = \OxidEsales\Eshop\Core\Registry::getConfig();
+        $extensionChecker = oxNew(\OxidEsales\PayPalModule\Core\ExtensionChecker::class);
+        $shops = $config->getShopIds();
+        $activeShopId = $config->getShopId();
+
+        foreach ($shops as $shopId) {
+            if ($shopId != $activeShopId) {
+                $extensionChecker->setShopId($shopId);
+                $extensionChecker->setExtensionId('oepaypal');
+                if ($extensionChecker->isActive()) {
+                    $active = true;
+                    break;
+                }
+            }
+        }
+
+        return $active;
     }
 
     /**

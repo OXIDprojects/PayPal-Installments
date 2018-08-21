@@ -10,8 +10,15 @@ $sMetadataVersion = '1.1';
  */
 $aModule = array(
     'id'          => 'paypinstallments',
-    'title'       => 'Ratenzahlung Powered by PayPal',
-    'description' => 'PayPal Installments',
+    'title'       => array(
+        'de' => 'Ratenzahlung Powered by PayPal',
+        'en' => 'PayPal Installments',
+    ),
+    'Ratenzahlung Powered by PayPal',
+    'description' =>  array(
+        'de' => 'PayPal Ratenzahlung ',
+        'en' => 'PayPal Installments',
+    ),
     'thumbnail'   => 'out/pictures/PP_Ratenzahlung_144x33.png',
     'version'     => '2.0.1',
     'author'      => 'info@paypal.com',
