@@ -1,10 +1,6 @@
 PayPal Installments changelog
 =====================
 
-v1.0.1
-------
- * Added settings for Upstream presentments
-
 v2.0.1
 ------
 
