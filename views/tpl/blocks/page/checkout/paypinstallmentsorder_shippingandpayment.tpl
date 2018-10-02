@@ -1,4 +1,4 @@
-[{oxstyle include=$oViewConf->getModuleUrl('paypinstallments', 'out/src/css/paypalinstallments.css')}]
+[{oxstyle include=$oViewConf->getModuleUrl('paypinstallments', 'out/src/css/paypalinstallments.css')|cat:'?1.0.0'}]
 [{assign var="oFinancingDetails" value=$oView->paypInstallments_getFinancingDetailsFromSession()}]
 [{if $oFinancingDetails}]
     [{assign var="oFinancingDetailsRenderData" value=$oView->paypInstallments_getFinancingOptionsRenderData()}]
