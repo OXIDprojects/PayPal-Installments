@@ -1,4 +1,4 @@
-# PayPal-Installments
+# PayPal-Installments v2.0.1
 ## Requirements
 
     * OXID eShop 6.0.x
