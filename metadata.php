@@ -20,7 +20,7 @@ $aModule = array(
         'en' => 'PayPal Installments',
     ),
     'thumbnail'   => 'out/pictures/PP_Ratenzahlung_144x33.png',
-    'version'     => '2.0.2',
+    'version'     => '2.0.1',
     'author'      => 'info@paypal.com',
     'url'         => 'http://www.paypal.com',
     'email'       => 'info@paypal.com',
