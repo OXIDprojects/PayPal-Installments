@@ -9,7 +9,8 @@
                     [{$oContent->oxcontents__oxcontent->value}]
                 </div>
                 <div class="content" id="payp-installments-presentment-advert-image">
-                    <img src="[{$oViewConf->getModuleUrl('paypinstallments')}]/out/pictures/PP_Ratenzahlung_144x33.png" alt="Ratenzahlung Powered by PayPal" />
+                    <img src="[{$oViewConf->getModuleUrl('paypinstallments')}]/out/pictures/RatenzahlungPoweredbyPayPal.png" 
+                    style="width: 144px; margin-bottom: 10px;"alt="Ratenzahlung Powered by PayPal" />
                 </div>
             </div>
             [{/if}]
