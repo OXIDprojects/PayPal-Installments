@@ -229,7 +229,7 @@ class paypInstallmentsEvents extends oxSuperCfg
     public static function _enablePaymentMethod()
     {
         $sPaymentMethodOxid = paypInstallmentsConfiguration::getPaymentId();
-        $payment = oxNew();
+        $payment = oxNew('oxPayment');
         $payment->load($sPaymentMethodOxid);
         $payment->oxpayments__oxactive = new \OxidEsales\Eshop\Core\Field(1);
         $payment->save();
