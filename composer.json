@@ -19,7 +19,7 @@
             "target-directory": "payp/installments"
         }
     },
-    "version": "2.0.1",
+    "version": "2.0.2",
     "require": {
         "paypal/sdk-core-php": "^3.4",
         "paypal/rest-api-sdk-php": "1.13.0",

@@ -1,6 +1,13 @@
 PayPal Installments changelog
 =====================
 
+v2.0.2
+------
+
+ * Fix _enablePaymentMethod() add missing class name
+
+ * Update documentation version
+
 v2.0.1
 ------
 
